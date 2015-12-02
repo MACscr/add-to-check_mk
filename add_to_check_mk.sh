@@ -91,8 +91,12 @@ else
 	mk_file="/opt/omd/sites/${site}/etc/check_mk/conf.d/wato/${folder}/hosts.mk"
 fi
 
-## Check file existence
+## Check for folder and file existence
 if [ ! -f "$mk_file" ]; then
+	## check if folder exists and it it does not, create with defaults
+	if [ ! -d "/opt/omd/sites/${site}/etc/check_mk/conf.d/wato/${folder}" ]; then
+		
+	fi
 	echo "WARN: File $mk_file does not currently exist, it will be created."
 	touch $mk_file && chown ${site}:${site} $mk_file
 fi
